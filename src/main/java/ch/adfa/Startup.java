@@ -1,21 +1,21 @@
 package ch.adfa;
 
-import java.io.IOException;
-
-import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+
+import ch.adfa.dto.Mail;
 
 @SpringBootApplication
 public class Startup implements CommandLineRunner {
 
     @Autowired
-    private JavaMailSender javaMailSender;
+    private MailService mailService;
+
+    @Value("${ch.adfa.testtarget}")
+    private String to;
 
     public static void main(String[] args) {
         SpringApplication.run(Startup.class, args);
@@ -27,27 +27,19 @@ public class Startup implements CommandLineRunner {
         System.out.println("Sending Email...");
 
         try {
-		
-            sendEmail();
-            //sendEmailWithAttachment();
+            Mail mail = Mail.builder()
+            .to(to)
+            .subject("NextTest")
+            .message("<h1>HTML Test</h1> Das ist eine <b>HTML</b> Nachricht!")
+            .build();
+
+            mailService.send(mail);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         System.out.println("Done");
-
-    }
-
-    void sendEmail() {
-
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo("xbrain@gmx.ch");
-
-        msg.setSubject("Testing from Spring Boot");
-        msg.setText("Hello World \n Spring Boot Email");
-
-        javaMailSender.send(msg);
 
     }
 }
