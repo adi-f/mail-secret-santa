@@ -1,18 +1,25 @@
 package ch.adfa;
 
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import ch.adfa.dto.Mail;
+import ch.adfa.dto.SantaTemplateMail;
 
 @SpringBootApplication
 public class Startup implements CommandLineRunner {
 
     @Autowired
     private MailService mailService;
+
+    @Autowired
+    private TemplateService templateService;
 
     @Value("${ch.adfa.testtarget}")
     private String to;
@@ -27,11 +34,15 @@ public class Startup implements CommandLineRunner {
         System.out.println("Sending Email...");
 
         try {
-            Mail mail = Mail.builder()
+            SantaTemplateMail mailTemplate = SantaTemplateMail.builder()
             .to(to)
             .subject("NextTest")
-            .message("<h1>HTML Test</h1> Das ist eine <b>HTML</b> Nachricht!")
+            .santaFrom("Adrian")
+            .santaTo("Anton")
+            .currentYear(LocalDate.now().getYear())
             .build();
+
+            Mail mail = templateService.transform(mailTemplate);
 
             mailService.send(mail);
 
