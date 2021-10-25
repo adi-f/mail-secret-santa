@@ -3,6 +3,9 @@ package ch.adfa;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -21,6 +24,9 @@ public class Startup implements CommandLineRunner {
     @Autowired
     private TemplateService templateService;
 
+    @Autowired
+    private RuleService ruleService;
+
     @Value("${ch.adfa.testtarget}")
     private String to;
 
@@ -32,6 +38,12 @@ public class Startup implements CommandLineRunner {
     public void run(String... args) {
 
         System.out.println("Sending Email...");
+
+        try {
+            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(ruleService.readRules()));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
         try {
             SantaTemplateMail mailTemplate = SantaTemplateMail.builder()

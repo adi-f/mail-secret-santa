@@ -1,6 +1,7 @@
 
 application.properties
 mailtempalte.html
+rules.json
 
 .classpath
 .project
