@@ -20,16 +20,16 @@ import ch.adfa.dto.Santa;
 @Service
 public class RuleService {
     
-    List<Santa> readRules() {
-        Rules rules = readFile();
+    List<Santa> readRules(String rulesFilePath) {
+        Rules rules = readFile(rulesFilePath);
         validate(rules);
         return transform(rules);
     }
 
-    private Rules readFile() {
+    private Rules readFile(String rulesFilePath) {
         ObjectMapper mapper = new ObjectMapper();
         try{
-            return mapper.readValue(new File("rules.json"), Rules.class);
+            return mapper.readValue(new File(rulesFilePath), Rules.class);
         } catch(Exception e) {
             throw new RuntimeException(e);
         }

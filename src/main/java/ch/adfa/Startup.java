@@ -40,7 +40,7 @@ public class Startup implements CommandLineRunner {
         System.out.println("Sending Email...");
 
         try {
-            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(ruleService.readRules()));
+            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(ruleService.readRules("rules.json")));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

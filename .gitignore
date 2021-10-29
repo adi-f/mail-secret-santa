@@ -1,6 +1,6 @@
 
 application.properties
-mailtempalte.html
+mailtemplate.html
 rules.json
 
 .classpath
