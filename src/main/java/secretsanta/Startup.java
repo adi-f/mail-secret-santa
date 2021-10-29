@@ -84,7 +84,7 @@ public class Startup implements CommandLineRunner {
 
     private void logMail(Mail mail) {
         System.out.printf(
-            "To: %s\nSubject: %s\n> > > > > > > >\n%s< < < < < < < <\n\n",
+            "To: %s\nSubject: %s\n> > > > > > > >\n%s\n< < < < < < < <\n\n",
             mail.getTo(), mail.getSubject(), mail.getMessage()
         );
     }
