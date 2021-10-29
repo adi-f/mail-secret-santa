@@ -37,6 +37,9 @@ public class Startup implements CommandLineRunner {
     @Value("${ch.adfa.logSecret}")
     private boolean logSecret;
 
+    @Value("${ch.adfa.logSecretMail}")
+    private boolean logSecretMail;
+
     public static void main(String[] args) {
         SpringApplication.run(Startup.class, args);
     }
@@ -65,6 +68,9 @@ public class Startup implements CommandLineRunner {
                 if(logSecret) {
                     System.out.printf(" - %s -> %s (mail to: %s)\n", mailTemplate.getSantaFrom(), mailTemplate.getSantaTo(), mailTemplate.getTo());
                 }
+                if(logSecretMail) {
+                    logMail(mail);
+                }
                 if(sendMail) {
                     mailService.send(mail);
                     System.out.println(" - Sent a mail");
@@ -74,5 +80,12 @@ public class Startup implements CommandLineRunner {
             }
         }
         System.out.println("Sent all mails" + (sendMail ? "" : " ( just simulated)"));
+    }
+
+    private void logMail(Mail mail) {
+        System.out.printf(
+            "To: %s\nSubject: %s\n> > > > > > > >\n%s< < < < < < < <\n\n",
+            mail.getTo(), mail.getSubject(), mail.getMessage()
+        );
     }
 }

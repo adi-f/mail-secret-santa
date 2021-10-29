@@ -14,6 +14,9 @@ public class MailPreparer {
     @Value("${ch.adfa.mailSubject}")
     private String mailSubject;
 
+    @Value("${ch.adfa.mailBanner}")
+    private String banner;
+
     public SantaTemplateMail prepareMail(Gifting gifting) {
         return SantaTemplateMail.builder()
         .to(gifting.getFrom().getEmail())
@@ -21,6 +24,7 @@ public class MailPreparer {
         .santaFrom(gifting.getFrom().getName())
         .santaTo(gifting.getTo().getName())
         .currentYear(LocalDate.now().getYear())
+        .banner(banner)
         .build();
     }
 }
