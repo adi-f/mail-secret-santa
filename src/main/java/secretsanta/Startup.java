@@ -79,7 +79,7 @@ public class Startup implements CommandLineRunner {
                 throw new RuntimeException("Failed at Santa " + gifting.getFrom().getName(), e);
             }
         }
-        System.out.println("Sent all mails" + (sendMail ? "" : " ( just simulated)"));
+        System.out.println("Sent all mails" + (sendMail ? "" : " (just simulated)"));
     }
 
     private void logMail(Mail mail) {

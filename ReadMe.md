@@ -6,6 +6,7 @@ Features:
 * Configure the participants, the email addresses and optionally exclusion rules
 * Simulation mode
 * Doesn't store/log the secret drawing (so the operator can participate without unfair knowledge)
+* Circular gifting: If the first Santa gives his gift to its giftee and the giftee becomes the next Santa etc., the last Santa gifts the first.
 
 # Manual
 ## Preparation
