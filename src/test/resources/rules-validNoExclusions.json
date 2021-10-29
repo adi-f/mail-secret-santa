@@ -1,0 +1,6 @@
+{
+    "santas": [
+        {"name": "A", "email": "a@invalid.void"},
+        {"name": "B", "email": "b@invalid.void"}
+    ]
+}
