@@ -1,4 +1,4 @@
-package ch.adfa;
+package secretsanta;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -9,13 +9,13 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import ch.adfa.dto.Mail;
-import ch.adfa.dto.SantaTemplateMail;
+import secretsanta.dto.Mail;
+import secretsanta.dto.SantaTemplateMail;
 
 @Service
 public class TemplateService {
 
-    @Value("${ch.adfa.mailtemplate}")
+    @Value("${secretsanta.mailtemplate}")
     private String mailtemplateFilePath;
 
     private String template;

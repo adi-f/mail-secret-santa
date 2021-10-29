@@ -1,4 +1,4 @@
-package ch.adfa;
+package secretsanta;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import ch.adfa.dto.Gifting;
-import ch.adfa.dto.Santa;
+import secretsanta.dto.Gifting;
+import secretsanta.dto.Santa;
 
 public class SecretSantaEngine implements Iterable<Gifting> {
     private static final int MAX_RETIES = 300;

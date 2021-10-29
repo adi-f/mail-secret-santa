@@ -1,4 +1,4 @@
-package ch.adfa;
+package secretsanta;
 
 import java.io.File;
 import java.util.Collection;
@@ -14,8 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.stereotype.Service;
 
-import ch.adfa.dto.Rules;
-import ch.adfa.dto.Santa;
+import secretsanta.dto.Rules;
+import secretsanta.dto.Santa;
 
 @Service
 public class RuleService {

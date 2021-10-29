@@ -1,4 +1,4 @@
-package ch.adfa.dto;
+package secretsanta.dto;
 
 import lombok.Builder;
 import lombok.NonNull;
@@ -6,9 +6,11 @@ import lombok.Value;
 
 @Value
 @Builder
-public class Gifting {
+public class Mail {
     @NonNull
-    Santa from;
+    String to;
     @NonNull
-    Santa to;
+    String subject;
+    @NonNull
+    String message;
 }

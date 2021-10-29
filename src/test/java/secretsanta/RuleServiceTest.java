@@ -1,4 +1,4 @@
-package ch.adfa;
+package secretsanta;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import ch.adfa.dto.Santa;
+import  secretsanta.dto.Santa;
 
 public class RuleServiceTest {
 

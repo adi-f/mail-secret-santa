@@ -1,10 +1,9 @@
-package ch.adfa;
+package secretsanta;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -19,8 +18,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import org.junit.jupiter.params.provider.MethodSource;
 
-import ch.adfa.dto.Gifting;
-import ch.adfa.dto.Santa;
+import secretsanta.dto.Gifting;
+import secretsanta.dto.Santa;
 
 public class SecretSantaEngineTest {
     

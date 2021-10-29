@@ -1,20 +1,20 @@
-package ch.adfa;
+package secretsanta;
 
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import ch.adfa.dto.Gifting;
-import ch.adfa.dto.SantaTemplateMail;
+import secretsanta.dto.Gifting;
+import secretsanta.dto.SantaTemplateMail;
 
 @Service
 public class MailPreparer {
     
-    @Value("${ch.adfa.mailSubject}")
+    @Value("${secretsanta.mailSubject}")
     private String mailSubject;
 
-    @Value("${ch.adfa.mailBanner}")
+    @Value("${secretsanta.mailBanner}")
     private String banner;
 
     public SantaTemplateMail prepareMail(Gifting gifting) {

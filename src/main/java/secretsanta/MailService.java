@@ -1,4 +1,4 @@
-package ch.adfa;
+package secretsanta;
 
 import javax.mail.internet.MimeMessage;
 
@@ -8,7 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import ch.adfa.dto.Mail;
+import secretsanta.dto.Mail;
 
 @Service
 public class MailService {

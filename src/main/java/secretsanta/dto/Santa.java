@@ -1,4 +1,4 @@
-package ch.adfa.dto;
+package secretsanta.dto;
 
 import java.util.Set;
 

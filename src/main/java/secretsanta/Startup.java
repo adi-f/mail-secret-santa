@@ -1,4 +1,4 @@
-package ch.adfa;
+package secretsanta;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import ch.adfa.dto.Gifting;
-import ch.adfa.dto.Mail;
-import ch.adfa.dto.Santa;
-import ch.adfa.dto.SantaTemplateMail;
+import secretsanta.dto.Gifting;
+import secretsanta.dto.Mail;
+import secretsanta.dto.Santa;
+import secretsanta.dto.SantaTemplateMail;
 
 @SpringBootApplication
 public class Startup implements CommandLineRunner {
@@ -28,16 +28,16 @@ public class Startup implements CommandLineRunner {
     @Autowired
     private MailPreparer mailPreparer;
 
-    @Value("${ch.adfa.rules}")
+    @Value("${secretsanta.rules}")
     private String rulesFilePath;
 
-    @Value("${ch.adfa.sendMail}")
+    @Value("${secretsanta.sendMail}")
     private boolean sendMail;
 
-    @Value("${ch.adfa.logSecret}")
+    @Value("${secretsanta.logSecret}")
     private boolean logSecret;
 
-    @Value("${ch.adfa.logSecretMail}")
+    @Value("${secretsanta.logSecretMail}")
     private boolean logSecretMail;
 
     public static void main(String[] args) {

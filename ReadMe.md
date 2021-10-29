@@ -16,7 +16,7 @@ Features:
 * Create and configure the mailtemplate.html (mail template)
 
 ## Run
-Just run the _main_ in _ch.adfa.Startup_. Maybe you want to run some try runs / simulations first
+Just run the _main_ in _secretsanta.Startup_. Maybe you want to run some try runs / simulations first
 
 ## Configuration
 ### application.properties
@@ -28,19 +28,19 @@ spring.mail.port=587
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
 
-ch.adfa.sendMail=true
-ch.adfa.logSecret=false
-ch.adfa.logSecretMail=false
-ch.adfa.mailSubject=The subject of the Secret Santa mails
-ch.adfa.mailBanner=
+secretsanta.sendMail=true
+secretsanta.logSecret=false
+secretsanta.logSecretMail=false
+secretsanta.mailSubject=The subject of the Secret Santa mails
+secretsanta.mailBanner=
 
-ch.adfa.mailtemplate=mailtemplate.html
-ch.adfa.rules=rules.json
+secretsanta.mailtemplate=mailtemplate.html
+secretsanta.rules=rules.json
 ```
-* For try runs / simulations, set `ch.adfa.sendMail=false`, to avoid sending an email.
-  * You can directly log the drawn Santa and giftee with  `ch.adfa.logSecret=true` (one line per relation).
-  * You can log the complete email using `ch.adfa.logSecretMail=true`
-  * You can include an optional banner in your mailtemplate like `"<h1 style=\"color: red\">THIS IS A TEST MAIL, IGNORE IT!</h1>"` using `ch.adfa.mailBanner=`.
+* For try runs / simulations, set `secretsanta.sendMail=false`, to avoid sending an email.
+  * You can directly log the drawn Santa and giftee with  `secretsanta.logSecret=true` (one line per relation).
+  * You can log the complete email using `secretsanta.logSecretMail=true`
+  * You can include an optional banner in your mailtemplate like `"<h1 style=\"color: red\">THIS IS A TEST MAIL, IGNORE IT!</h1>"` using `secretsanta.mailBanner=`.
 
 ### rules.json
 ```json
