@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import ch.adfa.dto.Mail;
@@ -13,6 +14,9 @@ import ch.adfa.dto.SantaTemplateMail;
 
 @Service
 public class TemplateService {
+
+    @Value("${ch.adfa.mailtemplate}")
+    private String mailtemplateFilePath;
 
     private String template;
 
@@ -32,7 +36,7 @@ public class TemplateService {
 
     private String getTemplate() {
         if(template == null) {
-            try (InputStream is = new BufferedInputStream(new FileInputStream("mailtemplate.html"))) {
+            try (InputStream is = new BufferedInputStream(new FileInputStream(mailtemplateFilePath))) {
                 template = IOUtils.toString(is, StandardCharsets.UTF_8);
             } catch(Exception e) {
                 throw new RuntimeException(e);

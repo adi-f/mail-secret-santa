@@ -2,6 +2,7 @@ package ch.adfa;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +13,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import ch.adfa.dto.Gifting;
 import ch.adfa.dto.Mail;
+import ch.adfa.dto.Santa;
 import ch.adfa.dto.SantaTemplateMail;
 
 @SpringBootApplication
@@ -27,8 +30,17 @@ public class Startup implements CommandLineRunner {
     @Autowired
     private RuleService ruleService;
 
-    @Value("${ch.adfa.testtarget}")
-    private String to;
+    @Autowired
+    private MailPreparer mailPreparer;
+
+    @Value("${ch.adfa.rules}")
+    private String rulesFilePath;
+
+    @Value("${ch.adfa.sendMail}")
+    private boolean sendMail;
+
+    @Value("${ch.adfa.logSecret}")
+    private boolean logSecret;
 
     public static void main(String[] args) {
         SpringApplication.run(Startup.class, args);
@@ -37,32 +49,35 @@ public class Startup implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        System.out.println("Sending Email...");
+        System.out.println("Running Secret Santa");
 
-        try {
-            System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(ruleService.readRules("rules.json")));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            SantaTemplateMail mailTemplate = SantaTemplateMail.builder()
-            .to(to)
-            .subject("NextTest")
-            .santaFrom("Adrian")
-            .santaTo("Anton")
-            .currentYear(LocalDate.now().getYear())
-            .build();
-
-            Mail mail = templateService.transform(mailTemplate);
-
-            mailService.send(mail);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        runSecretSanta();
 
         System.out.println("Done");
 
+    }
+
+    private void runSecretSanta() {
+        List<Santa> rules = ruleService.readRules(rulesFilePath);
+        SecretSantaEngine engine = SecretSantaEngine.fromRules(rules);
+
+        System.out.println("Start sending mails");
+
+        for(Gifting gifting : engine) {
+            try {
+                SantaTemplateMail mailTemplate = mailPreparer.prepareMail(gifting);
+                Mail mail = templateService.transform(mailTemplate);
+                if(logSecret) {
+                    System.out.printf(" - %s -> %s (mail to: %s)\n", mailTemplate.getSantaFrom(), mailTemplate.getSantaTo(), mailTemplate.getTo());
+                }
+                if(sendMail) {
+                    mailService.send(mail);
+                    System.out.println(" - Sent a mail");
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Failed at Santa " + gifting.getFrom().getName(), e);
+            }
+        }
+        System.out.println("Sent all mails" + (sendMail ? "" : " ( just simulated)"));
     }
 }

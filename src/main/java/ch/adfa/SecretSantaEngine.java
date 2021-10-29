@@ -14,8 +14,12 @@ public class SecretSantaEngine implements Iterable<Gifting> {
     private static final String FAILED_FINDING_SOLUTION_MESSAGE = "Could not find a valid gifting order!";
 
     private final List<Santa> giftingOrder;
+
+    public static SecretSantaEngine fromRules(Collection<Santa> rules) {
+        return new SecretSantaEngine(rules);
+    }
     
-    public SecretSantaEngine(Collection<Santa> santas) {
+    SecretSantaEngine(Collection<Santa> santas) {
         giftingOrder = createValidRandomOrder(santas);
     }
 
