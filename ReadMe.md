@@ -12,9 +12,9 @@ Features:
 ## Preparation
 * Checkout the project and open/import it in your favorite Java IDE.
   Because you use this once a year, you may skip generating an executable JAR file...
-* Create and configure the application.properties
-* Create and configure the rules.json (participants configuration)
-* Create and configure the mailtemplate.html (mail template)
+* Create and configure the application.properties in the project root / working direcotry.
+* Create and configure the rules.json (participants configuration) in the project root / working direcotry.
+* Create and configure the mailtemplate.html (mail template) in the project root / working direcotry.
 
 ## Run
 Just run the _main_ in _secretsanta.Startup_. Maybe you want to run some try runs / simulations first
