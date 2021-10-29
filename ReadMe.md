@@ -1,5 +1,5 @@
 # Secret Santa Email Sender Tool
-This little Java application draws the Santa (donor) and the giftee and sends the Santa/donor an email with the giftee's name.
+This little Java application draws the Santas (donors) and the giftees and sends the Santas/donors an email with the giftee's name.
 
 Features:
 * Create your own mail template
