@@ -96,11 +96,10 @@ All the placeholders are optional.
 Extra Tip: If you want to send all participants a first introducing mail first (to check all email addresses are correct and they really receive the mails),
 just use a template without including the `${santaTo}`:
 ```html
-${banner}
 <p>Hello ${santaFrom}</p>
 
 <p>Our Secret Santa drawing starts soon. Please send me a text message to confirm to received this mail.</p>
 
-Thanks,<br>
-Mike
+Regards,<br>
+Santa Clause
 ```
